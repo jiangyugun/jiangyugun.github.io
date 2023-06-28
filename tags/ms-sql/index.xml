@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MS-SQL on 醬油膏のBlog</title>
+    <link>https://jiangyugun.github.io/tags/ms-sql/</link>
+    <description>Recent content in MS-SQL on 醬油膏のBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 28 Jun 2023 02:12:46 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/tags/ms-sql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MS-SQL 常用的日期格式轉換</title>
+      <link>https://jiangyugun.github.io/posts/mssql-convertdate/</link>
+      <pubDate>Wed, 28 Jun 2023 02:12:46 +0000</pubDate>
+      
+      <guid>https://jiangyugun.github.io/posts/mssql-convertdate/</guid>
+      <description>有段時間沒用這些語法，會忘光光
+所以就來簡單記錄一下~
+(也可以直接請chatGPT幫忙產 🤪，懶人~)
+拆解日期 Select GETDATE() as &amp;#39;當前日期&amp;#39;, DateName(year, GETDATE()) as &amp;#39;年&amp;#39;, DateName(month, GETDATE()) as &amp;#39;月&amp;#39;, DateName(day, GETDATE()) as &amp;#39;日&amp;#39;, DateName(dw, GETDATE()) as &amp;#39;星期&amp;#39;, DateName(week, GETDATE()) as &amp;#39;周數&amp;#39;, DateName(hour, GETDATE()) as &amp;#39;時&amp;#39;, DateName(minute, GETDATE()) as &amp;#39;分&amp;#39;, DateName(second, GETDATE()) as &amp;#39;秒&amp;#39; 上述語法得出的結果如下:</description>
+    </item>
+    
+  </channel>
+</rss>

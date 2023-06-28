@@ -17,26 +17,26 @@
     
 
     
-    <title>Tags</title>
-    <meta name="description" content="一搖一晃~ 可愛的企鵝們~🎵">
-    <meta name="keywords" content='blog, gokarna, hugo'>
+    <title>MS-SQL 常用的日期格式轉換</title>
+    <meta name="description" content="MS-SQL convert date">
+    <meta name="keywords" content='blog, gokarna, hugo, MS-SQL'>
 
-    <meta property="og:url" content="https://jiangyugun.github.io/tags/">
+    <meta property="og:url" content="https://jiangyugun.github.io/posts/mssql-convertdate/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Tags">
-    <meta property="og:description" content="一搖一晃~ 可愛的企鵝們~🎵">
+    <meta property="og:title" content="MS-SQL 常用的日期格式轉換">
+    <meta property="og:description" content="MS-SQL convert date">
     <meta property="og:image" content="https://jiangyugun.github.io/images/UG.jpg">
     <meta property="og:image:secure_url" content="https://jiangyugun.github.io/images/UG.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tags">
-    <meta name="twitter:description" content="一搖一晃~ 可愛的企鵝們~🎵">
-    <meta property="twitter:domain" content="https://jiangyugun.github.io/tags/">
-    <meta property="twitter:url" content="https://jiangyugun.github.io/tags/">
+    <meta name="twitter:title" content="MS-SQL 常用的日期格式轉換">
+    <meta name="twitter:description" content="MS-SQL convert date">
+    <meta property="twitter:domain" content="https://jiangyugun.github.io/posts/mssql-convertdate/">
+    <meta property="twitter:url" content="https://jiangyugun.github.io/posts/mssql-convertdate/">
     <meta name="twitter:image" content="https://jiangyugun.github.io/images/UG.jpg">
 
     
-    <link rel="canonical" href="https://jiangyugun.github.io/tags/" />
+    <link rel="canonical" href="https://jiangyugun.github.io/posts/mssql-convertdate/" />
 
     
     <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
@@ -165,93 +165,65 @@
     </nav>
 </header>
 <main id="content">
-<div class="container tags-list">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>MS-SQL 常用的日期格式轉換</h1>
+        <small role="doc-subtitle">MS-SQL convert date</small>
+        <p class="post-date">
+            June 28, 2023
+        </p>
 
-    <h1 class="list-title"></h1>
-    
-    <ul class="post-tags">
+        <ul class="post-tags">
         
-        <li class="post-tag">
-            <a href="/tags/markdown/">
-                <div class="tag-name">markdown</div>
-                <div class="tag-posts-count">3</div>
-            </a>
-        </li>
+            <li class="post-tag"><a href="https://jiangyugun.github.io/tags/ms-sql">MS-SQL</a></li>
         
-        <li class="post-tag">
-            <a href="/tags/configuration/">
-                <div class="tag-name">configuration</div>
-                <div class="tag-posts-count">2</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/installation/">
-                <div class="tag-name">installation</div>
-                <div class="tag-posts-count">2</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/.net/">
-                <div class="tag-name">.net</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/css/">
-                <div class="tag-name">css</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/def/">
-                <div class="tag-name">def</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/emoji/">
-                <div class="tag-name">emoji</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/html/">
-                <div class="tag-name">html</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/iis/">
-                <div class="tag-name">iis</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/ms-sql/">
-                <div class="tag-name">ms-sql</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-        <li class="post-tag">
-            <a href="/tags/xyz/">
-                <div class="tag-name">xyz</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-    </ul>
-    
+        </ul>
+    </div>
 
+    <div class="post-content">
+        <p>
+            <p>有段時間沒用這些語法，會忘光光</p>
+<p>所以就來簡單記錄一下~</p>
+<p>(也可以直接請chatGPT幫忙產 🤪，懶人~)</p>
+<h2 id="拆解日期">拆解日期</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">Select</span> GETDATE() <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;當前日期&#39;</span>,
+</span></span><span style="display:flex;"><span>	   DateName(<span style="color:#66d9ef">year</span>, GETDATE()) <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;年&#39;</span>,
+</span></span><span style="display:flex;"><span>	   DateName(<span style="color:#66d9ef">month</span>, GETDATE()) <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;月&#39;</span>,
+</span></span><span style="display:flex;"><span>	   DateName(<span style="color:#66d9ef">day</span>, GETDATE()) <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;日&#39;</span>,
+</span></span><span style="display:flex;"><span>	   DateName(dw, GETDATE()) <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;星期&#39;</span>,
+</span></span><span style="display:flex;"><span>	   DateName(week, GETDATE()) <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;周數&#39;</span>,
+</span></span><span style="display:flex;"><span>	   DateName(hour, GETDATE()) <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;時&#39;</span>,
+</span></span><span style="display:flex;"><span>	   DateName(<span style="color:#66d9ef">minute</span>, GETDATE()) <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;分&#39;</span>,
+</span></span><span style="display:flex;"><span>	   DateName(<span style="color:#66d9ef">second</span>, GETDATE()) <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;秒&#39;</span>
+</span></span></code></pre></div><p>上述語法得出的結果如下:</p>
+<img src="/images/mssql/result-convert-date.png" alt="result-convert-date" style="float: left;">
+
+        </p>
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
 </div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#拆解日期">拆解日期</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
 
         </main><footer class="footer">
     

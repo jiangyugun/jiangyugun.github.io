@@ -25,6 +25,18 @@
     </item>
     
     <item>
+      <title>MS-SQL 常用的日期格式轉換</title>
+      <link>https://jiangyugun.github.io/posts/mssql-convertdate/</link>
+      <pubDate>Wed, 28 Jun 2023 02:12:46 +0000</pubDate>
+      
+      <guid>https://jiangyugun.github.io/posts/mssql-convertdate/</guid>
+      <description>有段時間沒用這些語法，會忘光光
+所以就來簡單記錄一下~
+(也可以直接請chatGPT幫忙產 🤪，懶人~)
+拆解日期 Select GETDATE() as &amp;#39;當前日期&amp;#39;, DateName(year, GETDATE()) as &amp;#39;年&amp;#39;, DateName(month, GETDATE()) as &amp;#39;月&amp;#39;, DateName(day, GETDATE()) as &amp;#39;日&amp;#39;, DateName(dw, GETDATE()) as &amp;#39;星期&amp;#39;, DateName(week, GETDATE()) as &amp;#39;周數&amp;#39;, DateName(hour, GETDATE()) as &amp;#39;時&amp;#39;, DateName(minute, GETDATE()) as &amp;#39;分&amp;#39;, DateName(second, GETDATE()) as &amp;#39;秒&amp;#39; 上述語法得出的結果如下:</description>
+    </item>
+    
+    <item>
       <title>Theme Documentation - Basics</title>
       <link>https://jiangyugun.github.io/posts/theme-documentation-basics/</link>
       <pubDate>Fri, 06 Mar 2020 21:29:01 +0800</pubDate>
