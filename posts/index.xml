@@ -6,7 +6,24 @@
     <description>Recent content in Posts on 醬油膏のBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 15 Apr 2021 23:39:49 +0530</lastBuildDate><atom:link href="https://jiangyugun.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 28 Jun 2023 02:12:46 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IIS-編輯錯誤 錯誤代碼 : -532462766</title>
+      <link>https://jiangyugun.github.io/posts/iis-error-532462766/</link>
+      <pubDate>Wed, 28 Jun 2023 02:12:46 +0000</pubDate>
+      
+      <guid>https://jiangyugun.github.io/posts/iis-error-532462766/</guid>
+      <description>有次突然接到新任務，上面要我協助修正專案且上線。
+完完全全沒有碰過該專案，就這樣從版控抓最新程式下來，依據需求修改完畢、上測試機測試，突然就蹦出這問題&amp;hellip;
+當下看到很傻眼，然後開始翻上個更新git是哪個人? 氣🐀!
+解決方法 通常看到類似這種訊息，第一時間都會先去檢查web.config
+但這專案真的有夠亂又老舊，不是很好閱讀
+後來從stackoverflow找到解決方式，二話不說先刪除有問題的Code上測試機看結果 🤪🤪🤪
+根據每個人專案配置不同，這不一定是最佳解法，參考就好&amp;hellip;
+改完後，記得專案重建、Local運作看看，說不定又有新的問題出現~ (搞事
+參考資料 Compiler Error Message: The compiler failed with error code -532462766 </description>
+    </item>
+    
     <item>
       <title>Theme Documentation - Basics</title>
       <link>https://jiangyugun.github.io/posts/theme-documentation-basics/</link>
