@@ -6,7 +6,18 @@
     <description>Recent content on 醬油膏のBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 28 Jun 2023 02:12:46 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Jun 2023 02:12:46 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Refresh Token In .Net 6</title>
+      <link>https://jiangyugun.github.io/posts/dotnet-refresh-token/</link>
+      <pubDate>Fri, 30 Jun 2023 02:12:46 +0000</pubDate>
+      
+      <guid>https://jiangyugun.github.io/posts/dotnet-refresh-token/</guid>
+      <description>為何需要Refresh Token? 如果長時間使用同個Token，駭客可能竊取Token濫用它，因此長時間不變更Token是很不安全的 當access Token過期時，可以使用Refresh Token從身份驗證獲取新的access Token Refresh Token 的生命週期比access Token還要長 JWT 是一種 Bearer Token 因此在Authorization帶入 Authorization: &amp;lsquo;Bearer &amp;rsquo; + token 運作機制 將生成的Refresh Token以及過期時效儲存在資料庫中，Refresh Token只有在申請新的Access Token時才會驗證，所以將Refresh Token儲存在資料庫中，不會對業務接口響應時間造成影響，也不需要像Session一樣一直保持在內存中以應對大量的請求。 提供server端禁用用戶Token的方式，當用戶登出或禁用用戶時，只需要將server端的Refresh Token禁用或刪除，用戶就會在Access Token過期後，由於無法獲取到新的Access Token，再也無法訪問需認證的接口，如下圖的架構 : 實作流程 必要的NuGet套件 Microsoft.EntityFrameworkCore.SqlServer Microsoft.EntityFrameworkCore.Tools Microsoft.AspNetCore.Identity.EntityFrameworkCore Microsoft.AspNetCore.Authentication.JwtBearer (待後續補足&amp;hellip; 很多流程其實都跟參考資料一樣)
+實作過程有碰到的問題 Claimsldentity.Name is always null
+解決方法 : 3 Common Problems with ClaimsIdentity and ClaimsPrincipal in ASP.NET Core 參考資料 https://www.c-sharpcorner.com/article/jwt-authentication-with-refresh-tokens-in-net-6-0/ https://zhuanlan.zhihu.com/p/52300092</description>
+    </item>
+    
     <item>
       <title>GraphQL-為API設計的資料查詢</title>
       <link>https://jiangyugun.github.io/posts/graphql-about/</link>

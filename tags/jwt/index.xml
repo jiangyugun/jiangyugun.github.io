@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>.Net on 醬油膏のBlog</title>
-    <link>https://jiangyugun.github.io/tags/.net/</link>
-    <description>Recent content in .Net on 醬油膏のBlog</description>
+    <title>JWT on 醬油膏のBlog</title>
+    <link>https://jiangyugun.github.io/tags/jwt/</link>
+    <description>Recent content in JWT on 醬油膏のBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 30 Jun 2023 02:12:46 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/tags/.net/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Jun 2023 02:12:46 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/tags/jwt/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Refresh Token In .Net 6</title>
       <link>https://jiangyugun.github.io/posts/dotnet-refresh-token/</link>
@@ -16,23 +16,6 @@
       <description>為何需要Refresh Token? 如果長時間使用同個Token，駭客可能竊取Token濫用它，因此長時間不變更Token是很不安全的 當access Token過期時，可以使用Refresh Token從身份驗證獲取新的access Token Refresh Token 的生命週期比access Token還要長 JWT 是一種 Bearer Token 因此在Authorization帶入 Authorization: &amp;lsquo;Bearer &amp;rsquo; + token 運作機制 將生成的Refresh Token以及過期時效儲存在資料庫中，Refresh Token只有在申請新的Access Token時才會驗證，所以將Refresh Token儲存在資料庫中，不會對業務接口響應時間造成影響，也不需要像Session一樣一直保持在內存中以應對大量的請求。 提供server端禁用用戶Token的方式，當用戶登出或禁用用戶時，只需要將server端的Refresh Token禁用或刪除，用戶就會在Access Token過期後，由於無法獲取到新的Access Token，再也無法訪問需認證的接口，如下圖的架構 : 實作流程 必要的NuGet套件 Microsoft.EntityFrameworkCore.SqlServer Microsoft.EntityFrameworkCore.Tools Microsoft.AspNetCore.Identity.EntityFrameworkCore Microsoft.AspNetCore.Authentication.JwtBearer (待後續補足&amp;hellip; 很多流程其實都跟參考資料一樣)
 實作過程有碰到的問題 Claimsldentity.Name is always null
 解決方法 : 3 Common Problems with ClaimsIdentity and ClaimsPrincipal in ASP.NET Core 參考資料 https://www.c-sharpcorner.com/article/jwt-authentication-with-refresh-tokens-in-net-6-0/ https://zhuanlan.zhihu.com/p/52300092</description>
-    </item>
-    
-    <item>
-      <title>IIS-編輯錯誤 錯誤代碼 : -532462766</title>
-      <link>https://jiangyugun.github.io/posts/iis-error-532462766/</link>
-      <pubDate>Wed, 28 Jun 2023 02:12:46 +0000</pubDate>
-      
-      <guid>https://jiangyugun.github.io/posts/iis-error-532462766/</guid>
-      <description>有次突然接到新任務，上面要我協助修正專案且上線。
-完完全全沒有碰過該專案，就這樣從版控抓最新程式下來，依據需求修改完畢、上測試機測試，突然就蹦出這問題&amp;hellip;
-當下看到很傻眼，然後開始翻上個更新git是哪個人? 氣🐀!
-解決方法 通常看到類似這種訊息，第一時間都會先去檢查web.config
-但這專案真的有夠亂又老舊，不是很好閱讀
-後來從stackoverflow找到解決方式，二話不說先刪除有問題的Code上測試機看結果 🤪🤪🤪
-根據每個人專案配置不同，這不一定是最佳解法，參考就好&amp;hellip;
-改完後，記得專案重建、Local運作看看，說不定又有新的問題出現~ (搞事
-參考資料 Compiler Error Message: The compiler failed with error code -532462766 </description>
     </item>
     
   </channel>

@@ -17,26 +17,26 @@
     
 
     
-    <title>Posts</title>
-    <meta name="description" content="一搖一晃~ 可愛的企鵝們~🎵">
-    <meta name="keywords" content='blog, gokarna, hugo'>
+    <title>Refresh Token In .Net 6</title>
+    <meta name="description" content=".Net-Refresh Token">
+    <meta name="keywords" content='blog, gokarna, hugo, .Net, JWT'>
 
-    <meta property="og:url" content="https://jiangyugun.github.io/posts/">
+    <meta property="og:url" content="https://jiangyugun.github.io/posts/dotnet-refresh-token/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Posts">
-    <meta property="og:description" content="一搖一晃~ 可愛的企鵝們~🎵">
+    <meta property="og:title" content="Refresh Token In .Net 6">
+    <meta property="og:description" content=".Net-Refresh Token">
     <meta property="og:image" content="https://jiangyugun.github.io/images/UG.jpg">
     <meta property="og:image:secure_url" content="https://jiangyugun.github.io/images/UG.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Posts">
-    <meta name="twitter:description" content="一搖一晃~ 可愛的企鵝們~🎵">
-    <meta property="twitter:domain" content="https://jiangyugun.github.io/posts/">
-    <meta property="twitter:url" content="https://jiangyugun.github.io/posts/">
+    <meta name="twitter:title" content="Refresh Token In .Net 6">
+    <meta name="twitter:description" content=".Net-Refresh Token">
+    <meta property="twitter:domain" content="https://jiangyugun.github.io/posts/dotnet-refresh-token/">
+    <meta property="twitter:url" content="https://jiangyugun.github.io/posts/dotnet-refresh-token/">
     <meta name="twitter:image" content="https://jiangyugun.github.io/images/UG.jpg">
 
     
-    <link rel="canonical" href="https://jiangyugun.github.io/posts/" />
+    <link rel="canonical" href="https://jiangyugun.github.io/posts/dotnet-refresh-token/" />
 
     
     <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
@@ -165,71 +165,95 @@
     </nav>
 </header>
 <main id="content">
-    <div class="container list-posts">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Refresh Token In .Net 6</h1>
+        <small role="doc-subtitle">.Net-Refresh Token</small>
+        <p class="post-date">
+            June 30, 2023
+        </p>
 
-    <h1 class="list-title">Posts</h1>
+        <ul class="post-tags">
+        
+            <li class="post-tag"><a href="https://jiangyugun.github.io/tags/.net">.Net</a></li>
+        
+            <li class="post-tag"><a href="https://jiangyugun.github.io/tags/jwt">JWT</a></li>
+        
+        </ul>
+    </div>
 
-    
+    <div class="post-content">
+        <p>
+            <h2 id="為何需要refresh-token">為何需要Refresh Token?</h2>
+<ul>
+<li>如果長時間使用同個Token，駭客可能竊取Token濫用它，因此長時間不變更Token是很不安全的</li>
+<li>當access Token過期時，可以使用Refresh Token從身份驗證獲取新的access Token</li>
+<li>Refresh Token 的生命週期比access Token還要長</li>
+</ul>
+<h2 id="jwt-是一種-bearer-token">JWT 是一種 Bearer Token</h2>
+<ul>
+<li>因此在Authorization帶入 Authorization: &lsquo;Bearer &rsquo; + token</li>
+</ul>
+<h2 id="運作機制">運作機制</h2>
+<ul>
+<li>將生成的Refresh Token以及過期時效儲存在資料庫中，Refresh Token只有在申請新的Access Token時才會驗證，所以將Refresh Token儲存在資料庫中，不會對業務接口響應時間造成影響，也不需要像Session一樣一直保持在內存中以應對大量的請求。</li>
+<li>提供server端禁用用戶Token的方式，當用戶登出或禁用用戶時，只需要將server端的Refresh Token禁用或刪除，用戶就會在Access Token過期後，由於無法獲取到新的Access Token，再也無法訪問需認證的接口，如下圖的架構 :
+<img src="/images/dotnet/refreshtoken.png" alt="refreshtoken" title="refreshtoken"></li>
+</ul>
+<h2 id="實作流程">實作流程</h2>
+<ul>
+<li>必要的NuGet套件
+<ul>
+<li>Microsoft.EntityFrameworkCore.SqlServer</li>
+<li>Microsoft.EntityFrameworkCore.Tools</li>
+<li>Microsoft.AspNetCore.Identity.EntityFrameworkCore</li>
+<li>Microsoft.AspNetCore.Authentication.JwtBearer</li>
+</ul>
+</li>
+</ul>
+<p>(待後續補足&hellip; 很多流程其實都跟參考資料一樣)</p>
+<ul>
+<li>實作過程有碰到的問題
+<ul>
+<li>Claimsldentity.Name is always null<br>
+解決方法 : <a href="https://www.benday.com/2021/08/13/3-common-problems-with-claimsidentity-and-claimsprincipal-in-asp-net-core/">3 Common Problems with ClaimsIdentity and ClaimsPrincipal in ASP.NET Core</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="參考資料">參考資料</h2>
+<p><a href="https://www.c-sharpcorner.com/article/jwt-authentication-with-refresh-tokens-in-net-6-0/">https://www.c-sharpcorner.com/article/jwt-authentication-with-refresh-tokens-in-net-6-0/</a>
+<a href="https://zhuanlan.zhihu.com/p/52300092">https://zhuanlan.zhihu.com/p/52300092</a></p>
 
-    <h2 class="posts-year">2023</h2><article class="post-title">
-    <a href="https://jiangyugun.github.io/posts/dotnet-refresh-token/" class="post-link">Refresh Token In .Net 6</a>
-    <div class="flex-break"></div>
-    <span class="post-date">June 30, 2023</span>
-</article>
-<article class="post-title">
-    <a href="https://jiangyugun.github.io/posts/mssql-convertdate/" class="post-link">MS-SQL 常用的日期格式轉換</a>
-    <div class="flex-break"></div>
-    <span class="post-date">June 28, 2023</span>
-</article>
-<article class="post-title">
-    <a href="https://jiangyugun.github.io/posts/iis-error-532462766/" class="post-link">IIS-編輯錯誤 錯誤代碼 : -532462766</a>
-    <div class="flex-break"></div>
-    <span class="post-date">June 28, 2023</span>
-</article>
-<article class="post-title">
-    <a href="https://jiangyugun.github.io/posts/graphql-about/" class="post-link">GraphQL-為API設計的資料查詢</a>
-    <div class="flex-break"></div>
-    <span class="post-date">June 28, 2023</span>
-</article>
+        </p>
+        
+    </div>
 
-    
-
-    <h2 class="posts-year">2021</h2><article class="post-title">
-    <a href="https://jiangyugun.github.io/posts/lorem-ipsum/" class="post-link">Lorem Ipsum</a>
-    <div class="flex-break"></div>
-    <span class="post-date">April 15, 2021</span>
-</article>
-
-    
-
-    <h2 class="posts-year">2020</h2><article class="post-title">
-    <a href="https://jiangyugun.github.io/posts/emoji-support/" class="post-link">Emoji Support</a>
-    <div class="flex-break"></div>
-    <span class="post-date">October 1, 2020</span>
-</article>
-<article class="post-title">
-    <a href="https://jiangyugun.github.io/posts/theme-documentation-advanced/" class="post-link">Theme Documentation - Advanced</a>
-    <div class="flex-break"></div>
-    <span class="post-date">May 6, 2020</span>
-</article>
-<article class="post-title">
-    <a href="https://jiangyugun.github.io/posts/theme-documentation-basics/" class="post-link">Theme Documentation - Basics</a>
-    <div class="flex-break"></div>
-    <span class="post-date">March 6, 2020</span>
-</article>
-
-    
-
-    <h2 class="posts-year">2019</h2><article class="post-title">
-    <a href="https://jiangyugun.github.io/posts/markdown-syntax/" class="post-link">Markdown Syntax Guide</a>
-    <div class="flex-break"></div>
-    <span class="post-date">June 19, 2019</span>
-</article>
-
-    
-
+    <div class="prev-next">
+        
+    </div>
 </div>
 
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#為何需要refresh-token">為何需要Refresh Token?</a></li>
+        <li><a href="#jwt-是一種-bearer-token">JWT 是一種 Bearer Token</a></li>
+        <li><a href="#運作機制">運作機制</a></li>
+        <li><a href="#實作流程">實作流程</a></li>
+        <li><a href="#參考資料">參考資料</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
 
         </main><footer class="footer">
     
