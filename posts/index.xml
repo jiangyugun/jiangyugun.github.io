@@ -8,6 +8,30 @@
     <language>en</language>
     <lastBuildDate>Wed, 28 Jun 2023 02:12:46 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>GraphQL-為API設計的資料查詢</title>
+      <link>https://jiangyugun.github.io/posts/graphql-about/</link>
+      <pubDate>Wed, 28 Jun 2023 02:12:46 +0000</pubDate>
+      
+      <guid>https://jiangyugun.github.io/posts/graphql-about/</guid>
+      <description>背景 絕大多數的實際應用，後端提供的接口基於RESTful風格，而RESTful架構的服務是圍繞資源展開的。隨著業務複雜度的提高，前端畫面訊息和交互體驗愈加複雜。
+RESTfull通常會遇到的痛點 1.性能瓶頸
+後端往往是採取微服務架構，拆成多個服務，一個頁面往往需要發送多個請求，才能獲取足夠的資料。而對於同一個接口，如果參數有多種組合，需要調用多次才行。 請求的數量越多，以下耗時越多: 隊列等待時間 連接建立和銷毀耗時 後端重複的權限或參數校驗 客戶端與服務器之間來回響應時間 2.數據冗餘
+後端提供的接口，通常會在多個頁面中使用，後端無法事先預知前端需要哪些資料，因此幾乎都是返回全部資料，寧多勿缺。隨著業務功能的發展，會加入更多的資料，而且為了保持兼容性，只增不減。 3.文檔缺失
+文檔跟接口分離，無法值觀通過接口或者單個聞檔或取所有需要的接口訊息。與此同時，文檔很難與實作完全保持一致，都需要依靠人工來確保資訊正確。 簡介 作為Facebook在2015年推出的查詢與顏，GraphQL能對API的資料提供一套淺顯易懂的完整描述，能使前端更加準確獲取需要的資料。
+以下是官方對GraphQL的定義
+GraphQl既是一種用於API的查詢語言也是一個滿足數據查詢運行時。 GraphQL對API中的數據提供了一套易於理解的完整描述，使得客戶端能夠準確的獲得需要的數據，而且沒有任何冗餘，也讓API更容易隨著時間推移而演進，還能用於構建強大的開發者工具。
+GraphQL的強大表達能力主要還是來自於它完備的類型系統，與REST不同，它將整個Web服務中的全部資源看成一個有連結的圖，而不是一個個資源孤島，在訪問任何資源時都可以通過資源之間的連接訪問其他的資源。
+舉個例子，假如有以下的結構 當訪問User資源時，可以通過GraphQL中的連接訪問當前User的Repo和Issue等資源，我們不再需要透過多個REST的接口個別獲取這些資料，只需要通過如下所示的查詢就能一次性拿到全部的結果:
+{ user{ id email username repos(first:10){ id url name issues(first:20){ id author title } } } } GraphQL這種方式能將原有的RESTful多次請求聚合成一次請求，不僅能夠減少多次請求帶來的延遲，還能夠降低server壓力，使得前端渲染速度加快。
+GraphQL vs RESTful 與RESTful明顯不同之處，是每個GraphQL服務器對外只提供一個用於調用內部接口的端點，所有的請求都訪問這暴露出來的唯一短點。 GraphQL實際上將多個HTTP請求聚合成一個請求，只是將多個RESTful請求的資源變成一個從跟資源Post訪問其他資源的Comment和Author的圖，從原有的分散式請求變成了集中式的請求，這種方式非常適合單體服務直接對外提供GraphQL服務，能夠在數據源和展示層建立一個非常清晰的分離，同時也能夠通過一些強大的工具，例如GraphQL直接提供可視化的文檔。
+優點 1.精準資料取得
+宣告式(Declarative)資料索取 資料只拿剛好且彈性十足 透過資料之間的關係連接(就像一幅Graph)，大幅減少來回request的次數 2.程式即文檔
+前後端溝通成本減少 實現以資料需求驅動(driven by data requirement)的設計 建立文檔(documentation)的時間成本幾近為0 3.前端控制權提升
+過往為了因應不同的平台或是裝置而需要一套新的API系統 GraphQL API 則只需要一套，其他交給前端自行決定資料索取的格式&amp;amp;方式 由於GraphQL query與回傳的資料格式幾乎相同，大大減少前端錯估資料樣貌的可能性 前端不再被日益複雜的架構設計綁住 4.高度自由的實作方式
+不預設綁任何程式語言或是資料庫 可將不同microservice的GraphQL schema串接在一起 5.</description>
+    </item>
+    
+    <item>
       <title>IIS-編輯錯誤 錯誤代碼 : -532462766</title>
       <link>https://jiangyugun.github.io/posts/iis-error-532462766/</link>
       <pubDate>Wed, 28 Jun 2023 02:12:46 +0000</pubDate>
