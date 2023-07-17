@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>async on 醬油膏のBlog</title>
+    <link>https://jiangyugun.github.io/tags/async/</link>
+    <description>Recent content in async on 醬油膏のBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 17 Jul 2023 04:16:46 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/tags/async/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Async/Await介紹</title>
+      <link>https://jiangyugun.github.io/posts/dotnet-async/</link>
+      <pubDate>Mon, 17 Jul 2023 04:16:46 +0000</pubDate>
+      
+      <guid>https://jiangyugun.github.io/posts/dotnet-async/</guid>
+      <description>最近因應專案需求，要將現有的API套用Async
+之前都只有上網看看別人文章、自己稍微做個實作測試
+這是第一次真的在實際專案上應用
+所以在開始之前，來補足一下知識，避免碰到問題不知道該從何下手(๑•́ ₃ •̀๑)
+Async(非同步)與Sync(同步)的差別 Synchronous(同步) 逐行的方式執行，代表前面程式完成之前，後面的程式必須等待前者執行完，才能運行
+Asynchronous(非同步) 第一個程式正在運行時，其他程式也能繼續運行下去
+非同步(Asynchronous)不在於提高效能，而是增加產能 非同步的優勢在於降低等待，讓執行緒能夠同時處裡更多事情藉以增加產能 非同步追求的是在相同時間內處理更多請求，並非以更快速度處理掉一個請求 非同步不等於多執行緒 多緒執行 在於建立多條執行緒，把多個工作交給不同執行緒個別處裡，屬分工加速
+非同步 允許執行緒在等待時間先處理其他工作，透過消除閒置增加產能
+非同步只對 I/O 相關作業有效，對吃CPU作業無法 作業涉及外部資源或I/O相關 存取資料庫 呼叫Web API
+等待回應期間，都可透過非同步讓執行緒去處理其他作業
+作業涉及大量消耗CPU的重度運算 代表執行緒從頭忙到尾，既然不會閒下來等待，也就不會分別去處裡其他作業
+結論 若是一堆吃CPU的作業，增加執行緒肯定可以加速 若為等待I/O回應的作業，增加執行緒的效果不大，變更為非同步作業才算有效 Async 像病毒一樣傳染 剛開始寫async / await很常碰到一件事情，只要方法前面加上async關鍵字，裡外呼叫的方法必須加上await才合規範，而要加await該外部方法也必須得加上async，緊接著外部方法又被要求使用await…
+此一設計理由是為了避免同步與非同步寫法混用以防止在GUI/ASP.NET情境產生Deadlock
+Deadlock實例，可參考以下 :
+await與Task.Result/Task.Wait()的Deadlock問題 A Practical Example Of Asynchronous Programming in C# and ASP.NET 回傳型別 宣告為async的.NET 方法必須傳回以下三種型別之一 :
+Task
+作業結束時將控制權還給呼叫端
+Task＜T＞
+作業結束時回傳型別為T的物件給呼叫端
+void
+採射後不理哲學，呼叫後即失去掌握 async void 在實務上不應使用，事件處理器是唯一例外
+參考資料 ASP.NET async 基本心法 The Ultimate Guide to Async and Await in C# and ASP.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>Async/Await介紹</title>
+    <meta name="description" content="非同步? 同步? -`д´- ">
+    <meta name="keywords" content='blog, gokarna, hugo, async'>
+
+    <meta property="og:url" content="https://jiangyugun.github.io/posts/dotnet-async/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Async/Await介紹">
+    <meta property="og:description" content="非同步? 同步? -`д´- ">
+    <meta property="og:image" content="https://jiangyugun.github.io/images/UG.jpg">
+    <meta property="og:image:secure_url" content="https://jiangyugun.github.io/images/UG.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Async/Await介紹">
+    <meta name="twitter:description" content="非同步? 同步? -`д´- ">
+    <meta property="twitter:domain" content="https://jiangyugun.github.io/posts/dotnet-async/">
+    <meta property="twitter:url" content="https://jiangyugun.github.io/posts/dotnet-async/">
+    <meta name="twitter:image" content="https://jiangyugun.github.io/images/UG.jpg">
+
+    
+    <link rel="canonical" href="https://jiangyugun.github.io/posts/dotnet-async/" />
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.edd985581bf860dfb4507e5885197f1680160c7fe19f23b31e183126d99dd596.js" integrity="sha256-7dmFWBv4YN&#43;0UH5YhRl/FoAWDH/hnyOzHhgxJtmd1ZY="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script type="text/javascript">
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://jiangyugun.github.io/">
+                <img src="https://jiangyugun.github.io//images/UG.jpg" alt="avatar" />
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://jiangyugun.github.io/">醬油膏のBlog</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://jiangyugun.github.io/"><span data-feather='home'></span> 首頁 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://jiangyugun.github.io/posts/"><span data-feather='book'></span> 文章 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://jiangyugun.github.io/projects/"><span data-feather='code'></span> Projects </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://jiangyugun.github.io/tags/"><span data-feather='tag'></span> 標籤 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/jiangyugun"><span data-feather='github'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span id="dark-theme-toggle-screen-reader-target" class="sr-only"></span>
+                <a>
+                    <span id="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span id="hamburger-menu-toggle-screen-reader-target" class="sr-only">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://jiangyugun.github.io/"><span data-feather='home'></span> 首頁 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://jiangyugun.github.io/posts/"><span data-feather='book'></span> 文章 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://jiangyugun.github.io/projects/"><span data-feather='code'></span> Projects </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://jiangyugun.github.io/tags/"><span data-feather='tag'></span> 標籤 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/jiangyugun"><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span id="dark-theme-toggle-screen-reader-target" class="sr-only">theme</span>
+                    <a>
+                        <span id="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Async/Await介紹</h1>
+        <small role="doc-subtitle">非同步? 同步? -`д´- </small>
+        <p class="post-date">
+            July 17, 2023
+        </p>
+
+        <ul class="post-tags">
+        
+            <li class="post-tag"><a href="https://jiangyugun.github.io/tags/async">async</a></li>
+        
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <p>
+            <p>最近因應專案需求，要將現有的API套用Async<br>
+之前都只有上網看看別人文章、自己稍微做個實作測試<br>
+這是第一次真的在實際專案上應用<br>
+所以在開始之前，來補足一下知識，避免碰到問題不知道該從何下手(๑•́ ₃ •̀๑)</p>
+<h2 id="span-stylecolor-ff8c00async非同步與sync同步的差別span"><span style="color: #ff8c00;">Async(非同步)與Sync(同步)的差別</span></h2>
+<h3 id="synchronous同步">Synchronous(同步)</h3>
+<p>逐行的方式執行，代表前面程式完成之前，後面的程式必須等待前者執行完，才能運行</p>
+<h3 id="asynchronous非同步">Asynchronous(非同步)</h3>
+<p>第一個程式正在運行時，其他程式也能繼續運行下去</p>
+<p><img src="/images/dotnet/asyncVSsync.png" alt="async vs sync" title="async vs sync"></p>
+<h2 id="span-stylecolor-ff8c00非同步asynchronous不在於提高效能而是增加產能span"><span style="color: #ff8c00;">非同步(Asynchronous)不在於提高效能，而是增加產能</span></h2>
+<ul>
+<li>非同步的優勢在於降低等待，讓執行緒能夠同時處裡更多事情藉以增加產能</li>
+<li>非同步追求的是在相同時間內處理更多請求，並非以更快速度處理掉一個請求</li>
+</ul>
+<h2 id="span-stylecolor-ff8c00非同步不等於多執行緒span"><span style="color: #ff8c00;">非同步不等於多執行緒</span></h2>
+<h3 id="多緒執行">多緒執行</h3>
+<p>在於建立多條執行緒，把多個工作交給不同執行緒個別處裡，屬分工加速</p>
+<h3 id="非同步">非同步</h3>
+<p>允許執行緒在等待時間先處理其他工作，透過消除閒置增加產能</p>
+<h2 id="span-stylecolor-ff8c00非同步只對-io-相關作業有效對吃cpu作業無法span"><span style="color: #ff8c00;">非同步只對 I/O 相關作業有效，對吃CPU作業無法</span></h2>
+<h3 id="作業涉及外部資源或io相關">作業涉及外部資源或I/O相關</h3>
+<ul>
+<li>存取資料庫</li>
+<li>呼叫Web API<br></li>
+</ul>
+<p>等待回應期間，都可透過非同步讓執行緒去處理其他作業</p>
+<h3 id="作業涉及大量消耗cpu的重度運算">作業涉及大量消耗CPU的重度運算</h3>
+<p>代表執行緒從頭忙到尾，既然不會閒下來等待，也就不會分別去處裡其他作業</p>
+<h3 id="結論">結論</h3>
+<ul>
+<li>若是一堆吃CPU的作業，增加執行緒肯定可以加速</li>
+<li>若為等待I/O回應的作業，增加執行緒的效果不大，變更為非同步作業才算有效</li>
+</ul>
+<h2 id="span-stylecolor-ff8c00async-像病毒一樣傳染span"><span style="color: #ff8c00;">Async 像病毒一樣傳染</span></h2>
+<p>剛開始寫async / await很常碰到一件事情，只要方法前面加上async關鍵字，裡外呼叫的方法必須加上await才合規範，而要加await該外部方法也必須得加上async，緊接著外部方法又被要求使用await…</p>
+<p>此一設計理由是為了避免同步與非同步寫法混用以防止在GUI/ASP.NET情境產生Deadlock</p>
+<p>Deadlock實例，可參考以下 :</p>
+<ul>
+<li><a href="https://blog.darkthread.net/blog/await-task-block-deadlock/">await與Task.Result/Task.Wait()的Deadlock問題</a></li>
+<li><a href="https://exceptionnotfound.net/asynchronous-programming-asp-net-csharp-practical-guide-refactoring/">A Practical Example Of Asynchronous Programming in C# and ASP.NET</a></li>
+</ul>
+<h2 id="span-stylecolor-ff8c00回傳型別span"><span style="color: #ff8c00;">回傳型別</span></h2>
+<p>宣告為async的.NET 方法必須傳回以下三種型別之一 :</p>
+<ul>
+<li>
+<p>Task</p>
+<p>作業結束時將控制權還給呼叫端</p>
+</li>
+<li>
+<p>Task＜T＞</p>
+<p>作業結束時回傳型別為T的物件給呼叫端</p>
+</li>
+<li>
+<p>void</p>
+<p>採射後不理哲學，呼叫後即失去掌握
+async void 在實務上不應使用，事件處理器是唯一例外</p>
+</li>
+</ul>
+<h2 id="span-stylecolor-ff8c00參考資料span"><span style="color: #ff8c00;">參考資料</span></h2>
+<ul>
+<li><a href="https://blog.darkthread.net/blog/async-aspnet/">ASP.NET async 基本心法</a></li>
+<li><a href="https://exceptionnotfound.net/async-await-in-asp-net-csharp-ultimate-guide/">The Ultimate Guide to Async and Await in C# and ASP.NET</a></li>
+</ul>
+
+        </p>
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#span-stylecolor-ff8c00async非同步與sync同步的差別span"><span style="color: #ff8c00;">Async(非同步)與Sync(同步)的差別</span></a>
+          <ul>
+            <li><a href="#synchronous同步">Synchronous(同步)</a></li>
+            <li><a href="#asynchronous非同步">Asynchronous(非同步)</a></li>
+          </ul>
+        </li>
+        <li><a href="#span-stylecolor-ff8c00非同步asynchronous不在於提高效能而是增加產能span"><span style="color: #ff8c00;">非同步(Asynchronous)不在於提高效能，而是增加產能</span></a></li>
+        <li><a href="#span-stylecolor-ff8c00非同步不等於多執行緒span"><span style="color: #ff8c00;">非同步不等於多執行緒</span></a>
+          <ul>
+            <li><a href="#多緒執行">多緒執行</a></li>
+            <li><a href="#非同步">非同步</a></li>
+          </ul>
+        </li>
+        <li><a href="#span-stylecolor-ff8c00非同步只對-io-相關作業有效對吃cpu作業無法span"><span style="color: #ff8c00;">非同步只對 I/O 相關作業有效，對吃CPU作業無法</span></a>
+          <ul>
+            <li><a href="#作業涉及外部資源或io相關">作業涉及外部資源或I/O相關</a></li>
+            <li><a href="#作業涉及大量消耗cpu的重度運算">作業涉及大量消耗CPU的重度運算</a></li>
+            <li><a href="#結論">結論</a></li>
+          </ul>
+        </li>
+        <li><a href="#span-stylecolor-ff8c00async-像病毒一樣傳染span"><span style="color: #ff8c00;">Async 像病毒一樣傳染</span></a></li>
+        <li><a href="#span-stylecolor-ff8c00回傳型別span"><span style="color: #ff8c00;">回傳型別</span></a></li>
+        <li><a href="#span-stylecolor-ff8c00參考資料span"><span style="color: #ff8c00;">參考資料</span></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2023 醬油膏のBlog</span>
+    
+    
+</footer>
+</body>
+</html>
