@@ -6,7 +6,34 @@
     <description>Recent content in Tags on 醬油膏のBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 17 Jul 2023 04:16:46 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C#</title>
+      <link>https://jiangyugun.github.io/tags/c#/</link>
+      <pubDate>Tue, 18 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jiangyugun.github.io/tags/c#/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dapper</title>
+      <link>https://jiangyugun.github.io/tags/dapper/</link>
+      <pubDate>Tue, 18 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jiangyugun.github.io/tags/dapper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dotnet</title>
+      <link>https://jiangyugun.github.io/tags/dotnet/</link>
+      <pubDate>Tue, 18 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jiangyugun.github.io/tags/dotnet/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>async</title>
       <link>https://jiangyugun.github.io/tags/async/</link>

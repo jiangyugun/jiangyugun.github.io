@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://jiangyugun.github.io/posts/dotnet-dapper-contrib/</loc>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://jiangyugun.github.io/posts/dotnet-async/</loc>
     <lastmod>2023-07-17T04:16:46+00:00</lastmod>
   </url><url>
@@ -29,16 +32,25 @@
     <loc>https://jiangyugun.github.io/posts/emoji-support/</loc>
     <lastmod>2020-10-01T17:55:28+08:00</lastmod>
   </url><url>
-    <loc>https://jiangyugun.github.io/tags/async/</loc>
-    <lastmod>2023-07-17T04:16:46+00:00</lastmod>
+    <loc>https://jiangyugun.github.io/tags/c#/</loc>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jiangyugun.github.io/tags/dapper/</loc>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jiangyugun.github.io/tags/dotnet/</loc>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jiangyugun.github.io/posts/</loc>
-    <lastmod>2023-07-17T04:16:46+00:00</lastmod>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jiangyugun.github.io/tags/</loc>
-    <lastmod>2023-07-17T04:16:46+00:00</lastmod>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jiangyugun.github.io/</loc>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jiangyugun.github.io/tags/async/</loc>
     <lastmod>2023-07-17T04:16:46+00:00</lastmod>
   </url><url>
     <loc>https://jiangyugun.github.io/tags/.net/</loc>

@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>async on 醬油膏のBlog</title>
-    <link>https://jiangyugun.github.io/tags/async/</link>
-    <description>Recent content in async on 醬油膏のBlog</description>
+    <title>C# on 醬油膏のBlog</title>
+    <link>https://jiangyugun.github.io/tags/c#/</link>
+    <description>Recent content in C# on 醬油膏のBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 17 Jul 2023 04:16:46 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/tags/async/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/tags/c#/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dapper.Contrib 介紹</title>
+      <link>https://jiangyugun.github.io/posts/dotnet-dapper-contrib/</link>
+      <pubDate>Tue, 18 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jiangyugun.github.io/posts/dotnet-dapper-contrib/</guid>
+      <description>你是否曾有過為了CRUD需求，寫一堆語法、設定Parameters參數，再透過IDbConnection Execute與資料庫進行交易? 當需求做完時，回頭發現一堆密密麻麻的語法，看了好不開心(;´༎ຶД༎ຶ`)
+那有沒有什麼作法可以簡短這些語法呢?
+並且還能針對特定資料異動更新 ! 歡迎試試 Dapper Contrib (*´∀`)~♥ ~
+簡介 Dapper.Contrib 提供CRUD的擴充方法，針對IDbConnection型別進行擴充，他會根據Model定義自動渲染SQL語法，對於簡單的CRUD情境相當適合，從原本需要Command以及Parameter的寫法，變成只需要Insert(Model)
+使用Dapper.Contrib的前置作業 using Dapper.Contrib.Extensions; [Table(&amp;#34;Member&amp;#34;)] public class Member { [Key] [ExplicitKey] public Guid Id { get; set; } [Computed] public long SequenceId { get; set; } public string Name { get; set; } public int Age { get; set; } } 說明上方使用到幾個Attribute Key : 預設會把Id或是有 [Key] 指定為主鍵、自動運算的欄位，而不產生語法
+ExplicitKey : 指定為主鍵，不是自動運算的欄位，要產生語法
+Computed : 在執行Insert、Update操作時，不產生語法，該屬性的值是由資料庫計算而來，而不是由應用程式直接提供的
+Table(”TableName”) : 預設使用Class Name當Table Name，這明確指定Table Name，不使用Class Name當Table Name</description>
+    </item>
+    
     <item>
       <title>Async/Await介紹</title>
       <link>https://jiangyugun.github.io/posts/dotnet-async/</link>

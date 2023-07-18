@@ -19,7 +19,7 @@
     
     <title>Async/Await介紹</title>
     <meta name="description" content="非同步? 同步? -`д´- ">
-    <meta name="keywords" content='blog, gokarna, hugo, async'>
+    <meta name="keywords" content='blog, gokarna, hugo, dotnet, C#, async'>
 
     <meta property="og:url" content="https://jiangyugun.github.io/posts/dotnet-async/">
     <meta property="og:type" content="website">
@@ -175,6 +175,10 @@
 
         <ul class="post-tags">
         
+            <li class="post-tag"><a href="https://jiangyugun.github.io/tags/dotnet">dotnet</a></li>
+        
+            <li class="post-tag"><a href="https://jiangyugun.github.io/tags/c">C#</a></li>
+        
             <li class="post-tag"><a href="https://jiangyugun.github.io/tags/async">async</a></li>
         
         </ul>
@@ -219,27 +223,17 @@
 <h2 id="span-stylecolor-ff8c00async-像病毒一樣傳染span"><span style="color: #ff8c00;">Async 像病毒一樣傳染</span></h2>
 <p>剛開始寫async / await很常碰到一件事情，只要方法前面加上async關鍵字，裡外呼叫的方法必須加上await才合規範，而要加await該外部方法也必須得加上async，緊接著外部方法又被要求使用await…</p>
 <p>此一設計理由是為了避免同步與非同步寫法混用以防止在GUI/ASP.NET情境產生Deadlock</p>
-<p>Deadlock實例，可參考以下 :</p>
-<ul>
-<li><a href="https://blog.darkthread.net/blog/await-task-block-deadlock/">await與Task.Result/Task.Wait()的Deadlock問題</a></li>
-<li><a href="https://exceptionnotfound.net/asynchronous-programming-asp-net-csharp-practical-guide-refactoring/">A Practical Example Of Asynchronous Programming in C# and ASP.NET</a></li>
-</ul>
+<p>Deadlock實例，可參考以下:<br>- <a href="https://blog.darkthread.net/blog/await-task-block-deadlock/">await與Task.Result/Task.Wait()的Deadlock問題</a><br>- <a href="https://exceptionnotfound.net/asynchronous-programming-asp-net-csharp-practical-guide-refactoring/">A Practical Example Of Asynchronous Programming in C# and ASP.NET</a></p>
 <h2 id="span-stylecolor-ff8c00回傳型別span"><span style="color: #ff8c00;">回傳型別</span></h2>
 <p>宣告為async的.NET 方法必須傳回以下三種型別之一 :</p>
 <ul>
-<li>
-<p>Task</p>
-<p>作業結束時將控制權還給呼叫端</p>
-</li>
-<li>
-<p>Task＜T＞</p>
-<p>作業結束時回傳型別為T的物件給呼叫端</p>
-</li>
-<li>
-<p>void</p>
-<p>採射後不理哲學，呼叫後即失去掌握
-async void 在實務上不應使用，事件處理器是唯一例外</p>
-</li>
+<li>Task<br>
+作業結束時將控制權還給呼叫端</li>
+<li>Task&lt;T&gt;<br>
+作業結束時回傳型別為T的物件給呼叫端</li>
+<li>void<br>
+採射後不理哲學，呼叫後即失去掌握
+async void 在實務上不應使用，事件處理器是唯一例外</li>
 </ul>
 <h2 id="span-stylecolor-ff8c00參考資料span"><span style="color: #ff8c00;">參考資料</span></h2>
 <ul>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>Dapper.Contrib 介紹</title>
+    <meta name="description" content="不想寫一堆SQL語法 ( ´•̥̥̥ω•̥̥̥` )">
+    <meta name="keywords" content='blog, gokarna, hugo, dotnet, C#, Dapper'>
+
+    <meta property="og:url" content="https://jiangyugun.github.io/posts/dotnet-dapper-contrib/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dapper.Contrib 介紹">
+    <meta property="og:description" content="不想寫一堆SQL語法 ( ´•̥̥̥ω•̥̥̥` )">
+    <meta property="og:image" content="https://jiangyugun.github.io/images/UG.jpg">
+    <meta property="og:image:secure_url" content="https://jiangyugun.github.io/images/UG.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dapper.Contrib 介紹">
+    <meta name="twitter:description" content="不想寫一堆SQL語法 ( ´•̥̥̥ω•̥̥̥` )">
+    <meta property="twitter:domain" content="https://jiangyugun.github.io/posts/dotnet-dapper-contrib/">
+    <meta property="twitter:url" content="https://jiangyugun.github.io/posts/dotnet-dapper-contrib/">
+    <meta name="twitter:image" content="https://jiangyugun.github.io/images/UG.jpg">
+
+    
+    <link rel="canonical" href="https://jiangyugun.github.io/posts/dotnet-dapper-contrib/" />
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.edd985581bf860dfb4507e5885197f1680160c7fe19f23b31e183126d99dd596.js" integrity="sha256-7dmFWBv4YN&#43;0UH5YhRl/FoAWDH/hnyOzHhgxJtmd1ZY="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script type="text/javascript">
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://jiangyugun.github.io/">
+                <img src="https://jiangyugun.github.io//images/UG.jpg" alt="avatar" />
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://jiangyugun.github.io/">醬油膏のBlog</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://jiangyugun.github.io/"><span data-feather='home'></span> 首頁 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://jiangyugun.github.io/posts/"><span data-feather='book'></span> 文章 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://jiangyugun.github.io/projects/"><span data-feather='code'></span> Projects </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://jiangyugun.github.io/tags/"><span data-feather='tag'></span> 標籤 </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/jiangyugun"><span data-feather='github'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span id="dark-theme-toggle-screen-reader-target" class="sr-only"></span>
+                <a>
+                    <span id="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span id="hamburger-menu-toggle-screen-reader-target" class="sr-only">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://jiangyugun.github.io/"><span data-feather='home'></span> 首頁 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://jiangyugun.github.io/posts/"><span data-feather='book'></span> 文章 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://jiangyugun.github.io/projects/"><span data-feather='code'></span> Projects </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://jiangyugun.github.io/tags/"><span data-feather='tag'></span> 標籤 </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/jiangyugun"><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span id="dark-theme-toggle-screen-reader-target" class="sr-only">theme</span>
+                    <a>
+                        <span id="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Dapper.Contrib 介紹</h1>
+        <small role="doc-subtitle">不想寫一堆SQL語法 ( ´•̥̥̥ω•̥̥̥` )</small>
+        <p class="post-date">
+            July 18, 2023
+        </p>
+
+        <ul class="post-tags">
+        
+            <li class="post-tag"><a href="https://jiangyugun.github.io/tags/dotnet">dotnet</a></li>
+        
+            <li class="post-tag"><a href="https://jiangyugun.github.io/tags/c">C#</a></li>
+        
+            <li class="post-tag"><a href="https://jiangyugun.github.io/tags/dapper">Dapper</a></li>
+        
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <p>
+            <p>你是否曾有過為了CRUD需求，寫一堆語法、設定Parameters參數，再透過IDbConnection Execute與資料庫進行交易? <br></p>
+<p>當需求做完時，回頭發現一堆密密麻麻的語法，看了好不開心(;´༎ຶД༎ຶ`)<br></p>
+<p>那有沒有什麼作法可以簡短這些語法呢?<br>
+並且還能針對特定資料異動更新 ! <br></p>
+<p>歡迎試試 Dapper Contrib (*´∀`)~♥ ~</p>
+<h2 id="span-stylecolor-ff8c00簡介span"><span style="color: #ff8c00;">簡介</span></h2>
+<p>Dapper.Contrib 提供CRUD的擴充方法，針對IDbConnection型別進行擴充，他會根據Model定義自動渲染SQL語法，對於簡單的CRUD情境相當適合，從原本需要Command以及Parameter的寫法，變成只需要Insert(Model)</p>
+<h2 id="span-stylecolor-ff8c00使用dappercontrib的前置作業span"><span style="color: #ff8c00;">使用Dapper.Contrib的前置作業</span></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> Dapper.Contrib.Extensions;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">[Table(&#34;Member&#34;)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Member</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [Key]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [ExplicitKey]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Guid Id { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [Computed]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">long</span> SequenceId { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Name { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> Age { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="span-stylecolor-ff8c00說明上方使用到幾個attributespan"><span style="color: #ff8c00;">說明上方使用到幾個Attribute</span></h3>
+<ul>
+<li>
+<p><strong>Key</strong> : 預設會把Id或是有 [Key] 指定為主鍵、自動運算的欄位，而不產生語法</p>
+</li>
+<li>
+<p><strong>ExplicitKey</strong> : 指定為主鍵，不是自動運算的欄位，要產生語法</p>
+</li>
+<li>
+<p><strong>Computed</strong> :
+在執行Insert、Update操作時，不產生語法，該屬性的值是由資料庫計算而來，而不是由應用程式直接提供的</p>
+</li>
+<li>
+<p><strong>Table(”TableName”)</strong> :
+預設使用Class Name當Table Name，這明確指定Table Name，不使用Class Name當Table Name</p>
+</li>
+</ul>
+<blockquote>
+<p>下一篇 將會帶領各位以實際專案狀況去修改程式<br>
+目標 : 把一堆SQL語法簡化，只需帶入對應資料表的Model即可</p>
+</blockquote>
+<h2 id="span-stylecolor-ff8c00參考資料span"><span style="color: #ff8c00;">參考資料</span></h2>
+<ul>
+<li><a href="https://www.notion.so/Contrib-d12aff90b5ae4873b653b1eb6b85486c?pvs=4#bcff357142d6409a863d284dc3d3408b">Dapper.Contrib 更加優雅的使用Dapper進行增刪改查</a></li>
+<li><a href="https://www.notion.so/Contrib-d12aff90b5ae4873b653b1eb6b85486c?pvs=4#a48c7a9356124274839656b140a7af7d">Dapper 利用Dapper.Contrib 簡化CRUD工作</a></li>
+</ul>
+
+        </p>
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#span-stylecolor-ff8c00簡介span"><span style="color: #ff8c00;">簡介</span></a></li>
+        <li><a href="#span-stylecolor-ff8c00使用dappercontrib的前置作業span"><span style="color: #ff8c00;">使用Dapper.Contrib的前置作業</span></a>
+          <ul>
+            <li><a href="#span-stylecolor-ff8c00說明上方使用到幾個attributespan"><span style="color: #ff8c00;">說明上方使用到幾個Attribute</span></a></li>
+          </ul>
+        </li>
+        <li><a href="#span-stylecolor-ff8c00參考資料span"><span style="color: #ff8c00;">參考資料</span></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2023 醬油膏のBlog</span>
+    
+    
+</footer>
+</body>
+</html>

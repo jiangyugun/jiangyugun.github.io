@@ -6,7 +6,23 @@
     <description>Recent content in Posts on 醬油膏のBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 17 Jul 2023 04:16:46 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dapper.Contrib 介紹</title>
+      <link>https://jiangyugun.github.io/posts/dotnet-dapper-contrib/</link>
+      <pubDate>Tue, 18 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jiangyugun.github.io/posts/dotnet-dapper-contrib/</guid>
+      <description>你是否曾有過為了CRUD需求，寫一堆語法、設定Parameters參數，再透過IDbConnection Execute與資料庫進行交易? 當需求做完時，回頭發現一堆密密麻麻的語法，看了好不開心(;´༎ຶД༎ຶ`)
+那有沒有什麼作法可以簡短這些語法呢?
+並且還能針對特定資料異動更新 ! 歡迎試試 Dapper Contrib (*´∀`)~♥ ~
+簡介 Dapper.Contrib 提供CRUD的擴充方法，針對IDbConnection型別進行擴充，他會根據Model定義自動渲染SQL語法，對於簡單的CRUD情境相當適合，從原本需要Command以及Parameter的寫法，變成只需要Insert(Model)
+使用Dapper.Contrib的前置作業 using Dapper.Contrib.Extensions; [Table(&amp;#34;Member&amp;#34;)] public class Member { [Key] [ExplicitKey] public Guid Id { get; set; } [Computed] public long SequenceId { get; set; } public string Name { get; set; } public int Age { get; set; } } 說明上方使用到幾個Attribute Key : 預設會把Id或是有 [Key] 指定為主鍵、自動運算的欄位，而不產生語法
+ExplicitKey : 指定為主鍵，不是自動運算的欄位，要產生語法
+Computed : 在執行Insert、Update操作時，不產生語法，該屬性的值是由資料庫計算而來，而不是由應用程式直接提供的
+Table(”TableName”) : 預設使用Class Name當Table Name，這明確指定Table Name，不使用Class Name當Table Name</description>
+    </item>
+    
     <item>
       <title>Async/Await介紹</title>
       <link>https://jiangyugun.github.io/posts/dotnet-async/</link>
@@ -26,15 +42,14 @@ Asynchronous(非同步) 第一個程式正在運行時，其他程式也能繼�
 作業涉及大量消耗CPU的重度運算 代表執行緒從頭忙到尾，既然不會閒下來等待，也就不會分別去處裡其他作業
 結論 若是一堆吃CPU的作業，增加執行緒肯定可以加速 若為等待I/O回應的作業，增加執行緒的效果不大，變更為非同步作業才算有效 Async 像病毒一樣傳染 剛開始寫async / await很常碰到一件事情，只要方法前面加上async關鍵字，裡外呼叫的方法必須加上await才合規範，而要加await該外部方法也必須得加上async，緊接著外部方法又被要求使用await…
 此一設計理由是為了避免同步與非同步寫法混用以防止在GUI/ASP.NET情境產生Deadlock
-Deadlock實例，可參考以下 :
-await與Task.Result/Task.Wait()的Deadlock問題 A Practical Example Of Asynchronous Programming in C# and ASP.NET 回傳型別 宣告為async的.NET 方法必須傳回以下三種型別之一 :
+Deadlock實例，可參考以下:
+- await與Task.Result/Task.Wait()的Deadlock問題
+- A Practical Example Of Asynchronous Programming in C# and ASP.NET
+回傳型別 宣告為async的.NET 方法必須傳回以下三種型別之一 :
 Task
-作業結束時將控制權還給呼叫端
-Task＜T＞
-作業結束時回傳型別為T的物件給呼叫端
-void
-採射後不理哲學，呼叫後即失去掌握 async void 在實務上不應使用，事件處理器是唯一例外
-參考資料 ASP.NET async 基本心法 The Ultimate Guide to Async and Await in C# and ASP.</description>
+作業結束時將控制權還給呼叫端 Task&amp;lt;T&amp;gt;
+作業結束時回傳型別為T的物件給呼叫端 void
+採射後不理哲學，呼叫後即失去掌握 async void 在實務上不應使用，事件處理器是唯一例外 參考資料 ASP.NET async 基本心法 The Ultimate Guide to Async and Await in C# and ASP.</description>
     </item>
     
     <item>
