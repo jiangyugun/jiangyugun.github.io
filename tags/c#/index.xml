@@ -6,7 +6,18 @@
     <description>Recent content in C# on 醬油膏のBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 18 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/tags/c#/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jiangyugun.github.io/tags/c#/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dapper.Contrib 實際應用</title>
+      <link>https://jiangyugun.github.io/posts/dotnet-dapper-contrib-example/</link>
+      <pubDate>Wed, 19 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jiangyugun.github.io/posts/dotnet-dapper-contrib-example/</guid>
+      <description>一般CRUD情境 假設要新增、修改使用者的證照清單，操作範例如下:
+證照清單 Model 依據資料表License建立一個Model為TLicense
+namespace TestService.Models { /// &amp;lt;summary&amp;gt; /// 證照資料 /// &amp;lt;/summary&amp;gt; public class TLicense { /// &amp;lt;summary&amp;gt; /// 流水號 /// &amp;lt;/summary&amp;gt; public int no { get; set; } /// &amp;lt;summary&amp;gt; /// 證照種類 /// &amp;lt;/summary&amp;gt; public string licn_typ { get; set; } /// &amp;lt;summary&amp;gt; /// 證照名稱 /// &amp;lt;/summary&amp;gt; public string licn_name { get; set; } /// &amp;lt;summary&amp;gt; /// 發照單位 /// &amp;lt;/summary&amp;gt; public string licn_unit { get; set; } } } 新增 using (var connection = new SqlConnection(connectionString)) { connection.</description>
+    </item>
+    
     <item>
       <title>Dapper.Contrib 介紹</title>
       <link>https://jiangyugun.github.io/posts/dotnet-dapper-contrib/</link>
